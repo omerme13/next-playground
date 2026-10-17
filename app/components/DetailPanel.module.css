@@ -1,0 +1,116 @@
+.panel {
+  --chart-height: 160px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--foreground) 15%, transparent);
+  border-radius: 8px;
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.name {
+  font-size: 1.1rem;
+}
+
+.meta,
+.chartTitle {
+  font-size: 0.85rem;
+  font-weight: normal;
+  color: color-mix(in srgb, var(--foreground) 60%, transparent);
+}
+
+.close {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.chart {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(14, minmax(0, 1fr));
+  gap: 3px;
+  align-items: end;
+  height: var(--chart-height);
+}
+
+.barSlot {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+}
+
+.bar {
+  width: 100%;
+  min-height: 1px;
+  border-radius: 2px 2px 0 0;
+  background: #4f46e5;
+}
+
+.barValue,
+.barLabel {
+  font-size: 0.6rem;
+  color: color-mix(in srgb, var(--foreground) 60%, transparent);
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.barLabel {
+  white-space: nowrap;
+  text-overflow: clip;
+}
+
+.chartSkeleton {
+  height: var(--chart-height);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--foreground) 12%, transparent);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  color: #dc2626;
+}
+
+.retry {
+  padding: 6px 12px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .panel {
+    width: 360px;
+  }
+}

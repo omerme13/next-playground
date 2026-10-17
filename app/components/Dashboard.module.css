@@ -1,0 +1,214 @@
+/* Mobile first: single column; wider layouts are added at 640px and 1024px. */
+
+.page {
+  --gutter: 16px;
+  --radius: 8px;
+  --border: color-mix(in srgb, var(--foreground) 15%, transparent);
+  --muted: color-mix(in srgb, var(--foreground) 60%, transparent);
+  --surface: color-mix(in srgb, var(--foreground) 4%, var(--background));
+  --accent: #4f46e5;
+
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gutter);
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+.seats {
+  color: var(--muted);
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.segmented {
+  display: inline-flex;
+  align-self: flex-start;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.segment {
+  padding: 8px 16px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.segment + .segment {
+  border-left: 1px solid var(--border);
+}
+
+.segment[aria-pressed="true"] {
+  background: var(--accent);
+  color: #fff;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.label {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--background);
+  color: inherit;
+  font: inherit;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  min-width: 0;
+}
+
+.cardValue {
+  font-size: 1.75rem;
+}
+
+.skeleton {
+  display: block;
+  border-radius: 4px;
+  background: var(--border);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.cardValueSkeleton {
+  width: 50%;
+  height: 2rem;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gutter);
+  align-items: start;
+}
+
+.tableSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.tableToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+}
+
+.button {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button[data-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #dc2626;
+  border-radius: var(--radius);
+  color: #dc2626;
+}
+
+@media (min-width: 640px) {
+  .controls,
+  .filters {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .controls {
+    justify-content: space-between;
+  }
+
+  .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .page {
+    --gutter: 24px;
+  }
+
+  /* Second column collapses to 0 when no panel is open. */
+  .content {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
